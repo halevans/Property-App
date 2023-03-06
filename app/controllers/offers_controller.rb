@@ -12,7 +12,7 @@ class OffersController < ApplicationController
   end
 
   def create
-    @offer = Offer.new(params.require(:offer).permit(:offer_price, :house_id, :user_id))
+    @offer = Offer.new(offer_params)
 
     if @offer.save
       render json: @offer, status: :created, location: @offer
@@ -25,5 +25,9 @@ class OffersController < ApplicationController
   
   def set_offer
     @offer = Offer.find(params[:id])
+  end
+
+  def offer_params
+    params.require(:offer).permit(:offer_price, :house_id, :user_id)
   end
 end

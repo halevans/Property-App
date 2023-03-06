@@ -12,7 +12,7 @@ class HousesController < ApplicationController
   end
 
   def create
-    @house = House.new(params.require(:house).permit(:asking_price, :no_rooms, :img_url, :user_id))
+    @house = House.new(house_params)
 
     if @house.save
       render json: @house, status: :created, location: @house
@@ -25,5 +25,8 @@ class HousesController < ApplicationController
   
   def set_house
     @house = House.find(params[:id])
+  end
+  def house_params
+    params.require(:house).permit(:asking_price, :no_rooms, :img_url, :user_id)
   end
 end
