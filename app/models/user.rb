@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :houses, dependent: :destroy
   has_many :offers, dependent: :destroy
-  # has_many :houses, through: :offers
+  has_many :offered_houses, through: :offers, source: :house
 end
