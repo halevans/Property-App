@@ -11,6 +11,16 @@ class OffersController < ApplicationController
     render json: @offer
   end
 
+  def create
+    @offer = Offer.new(params.require(:offer).permit(:offer_price, :house_id, :user_id))
+
+    if @offer.save
+      render json: @offer, status: :created, location: @offer
+    else
+      render json: @offer.errors, status: :unprocessable_entity
+    end
+  end
+
   private 
   
   def set_offer
