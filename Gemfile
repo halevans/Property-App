@@ -48,3 +48,5 @@ end
 
 
 gem "rack-cors", "~> 2.0"
+
+gem "devise", "~> 4.9"

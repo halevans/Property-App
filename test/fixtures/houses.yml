@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  asking_price: 1
+  no_rooms: 1
+  img_url: MyString
+  user: one
+
+two:
+  asking_price: 1
+  no_rooms: 1
+  img_url: MyString
+  user: two
