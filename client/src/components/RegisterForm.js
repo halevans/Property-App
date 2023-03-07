@@ -4,8 +4,12 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { registerUser } from '../ApiConfig/api';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterForm() {
+
+  const navigate = useNavigate();
+
   const [registerDetails, setRegisterDetails ] = useState({
     first_name: null,
     last_name: null,
@@ -24,12 +28,23 @@ function RegisterForm() {
 
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
-    console.log("SUBMITTING");
-    console.log(registerDetails);
+    console.log("Registering User");
 
     registerUser(registerDetails)
       .then((response) => {
         console.log(response, response.data)
+
+        // Store response data to local storage
+        localStorage.setItem('user',
+        JSON.stringify({
+          id: response.data.resource_owner.id,
+          token: response.data.token,
+          refresh_token: response.data.refresh_token
+        }));
+
+        // Redirect page to landing page
+        console.log("Navigating to landing-page");
+        navigate("/landing-page");
       })
       .catch((error) => {
         if (error.response) {

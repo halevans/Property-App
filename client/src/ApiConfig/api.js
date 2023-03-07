@@ -8,3 +8,11 @@ export const registerUser = (registerDetails) => {
 export const loginUser = (loginDetails) => {
   return axios.post(`${apiUrl}/users/tokens/sign_in`, loginDetails);
 }
+
+export const logoutUser = (token) => {
+  return axios.post(`${apiUrl}/users/tokens/revoke`, null , {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
