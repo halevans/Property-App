@@ -2,8 +2,11 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { loginUser } from '../ApiConfig/api';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
+
+  const navigate = useNavigate();
 
   const [loginDetails, setLoginDetails ] = useState({
     email: null,
@@ -26,12 +29,18 @@ function LoginForm() {
     loginUser(loginDetails)
       .then((response) => {
         console.log(response, response.data)
+
+        // Store response data to local storage
         localStorage.setItem('user',
         JSON.stringify({
           id: response.data.resource_owner.id,
           token: response.data.token,
           refresh_token: response.data.refresh_token
-        }))
+        }));
+
+        // Redirect page to landing page
+        console.log("Navigating...");
+        navigate("/landing-page");
       })
       .catch((error) => {
         if (error.response) {
