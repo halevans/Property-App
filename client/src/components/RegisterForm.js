@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { registerUser } from '../ApiConfig/api';
 
 function RegisterForm() {
   const [registerDetails, setRegisterDetails ] = useState({
@@ -21,16 +22,33 @@ function RegisterForm() {
     }));
   }
 
-  const handleSubmit = (e) => {
+  const handleRegisterSubmit = (e) => {
     e.preventDefault();
     console.log("SUBMITTING");
     console.log(registerDetails);
+
+    registerUser(registerDetails)
+      .then((response) => {
+        console.log(response, response.data)
+      })
+      .catch((error) => {
+        if (error.response) {
+          //response status is an error code
+          console.log(error.response.status);
+        } else if (error.request) {
+          //response not received though the request was sent
+          console.log(error.request);
+        } else {
+          //an error occurred when setting up the request
+          console.log(error.message);
+        }
+      });
   }
 
   return (
     <>
       <h2>Register Form</h2>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleRegisterSubmit}>
         <Row>
           <Col>
             <Form.Group className="mb-3" controlId="registerFormFirstName">
