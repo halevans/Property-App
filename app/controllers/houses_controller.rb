@@ -1,5 +1,7 @@
 class HousesController < ApplicationController
+  skip_before_action :verify_authenticity_token, raise: false
   before_action :set_house, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_devise_api_token!
 
   def index
     @houses = House.all
