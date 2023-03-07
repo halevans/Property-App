@@ -1,15 +1,19 @@
 import { Container, Navbar, Nav, Button } from 'react-bootstrap';
 import { logoutUser } from '../ApiConfig/api';
+import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
+
+  const navigate = useNavigate();
+
   const handleLogOut = () => {
     console.log("Goodbye!")
     const user_token = JSON.parse(localStorage.getItem("user")).token
 
-    console.log(user_token)
     logoutUser(user_token)
       .then((response) => {
-        console.log(response)
+        localStorage.removeItem("user");
+        navigate("/login");
       })
       .catch((error) => {
         if (error.response) {
@@ -39,7 +43,15 @@ function NavBar() {
           <Nav>
             <Nav.Link href="/about">About</Nav.Link>
           </Nav>
-          <Button variant="outline-danger" onClick={handleLogOut}>Logout</Button>
+          <Navbar.Text>
+            Signed in as: <a href="#login">PERSON</a>
+          </Navbar.Text>
+          {localStorage.getItem("user") && 
+            <Button variant="outline-danger" onClick={handleLogOut}>Logout</Button>
+          }
+          {!localStorage.getItem("user") && 
+            <Button variant="outline-danger" onClick={() => navigate("/login")}>Log In</Button>
+          }
         </Navbar.Collapse>
       </Container>
     </Navbar>

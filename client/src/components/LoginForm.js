@@ -23,12 +23,10 @@ function LoginForm() {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    console.log("LOGIN");
-    console.log(loginDetails);
+    console.log("Login User");
 
     loginUser(loginDetails)
       .then((response) => {
-        console.log(response, response.data)
 
         // Store response data to local storage
         localStorage.setItem('user',
@@ -39,7 +37,7 @@ function LoginForm() {
         }));
 
         // Redirect page to landing page
-        console.log("Navigating...");
+        console.log("Navigating to landing page");
         navigate("/landing-page");
       })
       .catch((error) => {
