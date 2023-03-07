@@ -26,6 +26,12 @@ function LoginForm() {
     loginUser(loginDetails)
       .then((response) => {
         console.log(response, response.data)
+        localStorage.setItem('user',
+        JSON.stringify({
+          id: response.data.resource_owner.id,
+          token: response.data.token,
+          refresh_token: response.data.refresh_token
+        }))
       })
       .catch((error) => {
         if (error.response) {
