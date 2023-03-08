@@ -25,9 +25,6 @@ function NavBar() {
     }
   }, []);
 
-  useEffect(() => {
-  }, [user]);
-
   const handleLogOut = () => {
     const user_token = JSON.parse(localStorage.getItem("user")).token
     console.log("Goodbye!")
