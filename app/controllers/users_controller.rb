@@ -11,6 +11,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+    puts "*******************************"
+    puts current_user
+    puts "*******************************"
   end
   
 end

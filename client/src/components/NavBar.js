@@ -9,7 +9,6 @@ function NavBar() {
   const [user, setUser] = useState(null); //initialize user state as null
 
   useEffect(() => {
-
     if (!JSON.parse(localStorage.getItem("user"))) {
       console.log("No user in localStorage")
     } else {
@@ -26,6 +25,8 @@ function NavBar() {
     }
   }, []);
 
+  useEffect(() => {
+  }, [user]);
 
   const handleLogOut = () => {
     const user_token = JSON.parse(localStorage.getItem("user")).token
