@@ -11,7 +11,7 @@ function NavBar() {
   useEffect(() => {
 
     if (!JSON.parse(localStorage.getItem("user"))) {
-      console.log("User does not exist")
+      console.log("No user in localStorage")
     } else {
       // fetch user info from API on component mount
       const user = JSON.parse(localStorage.getItem("user"));

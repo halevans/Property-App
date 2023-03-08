@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Card, Container, Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { checkTokenValidity } from '../ApiConfig/api';
+import { getUserInfo } from '../ApiConfig/api';
+
 
 function ProfilePage() {
 
@@ -10,10 +12,10 @@ function ProfilePage() {
   const [editMode, setEditMode] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [profileDetails, setProfileDetails] = useState({
-    first_name: 'Joe',
-    last_name: 'Bloggs',
-    email: 'john@example.com',
-    phone_number: '07898765432'
+    first_name: '...loading',
+    last_name: '...loading',
+    email: '...loading',
+    phone_number: '...loading'
   });
 
   useEffect(() => {
@@ -22,6 +24,23 @@ function ProfilePage() {
       checkTokenValidity(storedUser.token)
       .then((response) => {
         setAuthenticated(storedUser);
+
+        // Get user info
+        getUserInfo(storedUser.id ,storedUser.token)
+        .then((response) => {
+          console.log(response)
+          //store user info in component state
+          setProfileDetails({
+            first_name: response.data.first_name,
+            last_name: response.data.last_name,
+            email: response.data.email,
+            phone_number: response.data.phone_number
+          }) 
+        })
+        .catch((error) => {
+          //handle error
+          console.log(error);
+        });
       })
       .catch((error) => {
         localStorage.removeItem("user");
