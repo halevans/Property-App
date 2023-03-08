@@ -46,10 +46,10 @@ function NavBar() {
           </Nav>
           {localStorage.getItem("user") && 
             <>
-              <Button variant="outline-danger" onClick={handleLogOut}>Logout</Button>
               <Navbar.Text>
                 Signed in as: <a href="/profile">{JSON.parse(localStorage.getItem("user")).id}</a>
               </Navbar.Text>
+              <Button className="ms-3" variant="outline-danger" onClick={handleLogOut}>Logout</Button>
             </>
           }
           {!localStorage.getItem("user") && 
