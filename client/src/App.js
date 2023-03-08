@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import LoginPage from './pages/LoginPage';
 import { Route, Routes } from "react-router-dom";
 import LandingPage from './pages/LandingPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
       <NavBar />
       <Routes>
         <Route exact path="/" element={null} />
-        <Route exact path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/landing-page" element={<LandingPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </>
   )
