@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { checkTokenValidity } from '../ApiConfig/api';
 
 function LandingPage() {
 
@@ -8,15 +9,17 @@ function LandingPage() {
   const [authenticated, setAuthenticated] = useState(null);
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      setAuthenticated(loggedInUser);
-    } else {
-      console.log("Redirecting to Login Page...")
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    checkTokenValidity(storedUser.token)
+    .then((response) => {
+      setAuthenticated(storedUser);
+    })
+    .catch((error) => {
+      localStorage.removeItem("user");
       navigate("/login");
-    }
+    })
   }, [navigate]);
-
+  
   if (!authenticated) {
     return null
   } else {

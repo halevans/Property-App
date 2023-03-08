@@ -16,3 +16,12 @@ export const logoutUser = (token) => {
     }
   });
 }
+
+export const checkTokenValidity = (token) => {
+  return axios.get(`${apiUrl}/users/tokens/info`, null , {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+});
+}
+
