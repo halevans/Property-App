@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/restricted'
-  devise_for :users
+  devise_for :users, 
+             controllers: { tokens: 'tokens' }
 
   resources :houses
   resources :offers
