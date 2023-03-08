@@ -44,7 +44,7 @@ function NavBar() {
             <Nav.Link href="/about">About</Nav.Link>
           </Nav>
           <Navbar.Text>
-            Signed in as: <a href="#login">PERSON</a>
+            Signed in as: <a href="/profile">PERSON</a>
           </Navbar.Text>
           {localStorage.getItem("user") && 
             <Button variant="outline-danger" onClick={handleLogOut}>Logout</Button>
