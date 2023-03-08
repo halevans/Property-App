@@ -48,3 +48,11 @@ export const getOffers = (token, house_id) => {
     }
   })
 }
+
+export const newOffer = (token, offer_info) => {
+  return axios.post(`${apiUrl}/offers`, offer_info, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+}

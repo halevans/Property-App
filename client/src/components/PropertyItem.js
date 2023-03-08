@@ -22,10 +22,12 @@ function PropertyItem(props) {
   }, [props.user.token, props.propertyDetails.id])
 
   const toggleOfferModalOpen = () => {
+    console.log("Open")
     setOfferModal(true)
   }
 
   const toggleOfferModalClose = () => {
+    console.log("Close")
     setOfferModal(false)
   }
 
@@ -65,6 +67,8 @@ function PropertyItem(props) {
             <OfferFormModal
               show={showOfferModal}
               onHide={toggleOfferModalClose}
+              user={props.user}
+              propertyDetails={props.propertyDetails}
             />
 
           </Card.Body>
