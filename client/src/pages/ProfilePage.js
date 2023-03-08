@@ -10,10 +10,10 @@ function ProfilePage() {
   const [authenticatedUser, setAuthenticated] = useState(null);
 
   const [profileDetails, setProfileDetails] = useState({
-    first_name: 'John',
-    last_name: 'Doe',
-    email: 'johndoe@example.com',
-    phone_number: '555-555-5555'
+    first_name: 'Joe',
+    last_name: 'Bloggs',
+    email: 'john@example.com',
+    phone_number: '07898765432'
   });
 
   const [editMode, setEditMode] = useState(false);
@@ -36,8 +36,8 @@ function ProfilePage() {
   }, [navigate]);
 
   const handleProfileDetailsChange = (e) => {
-    const { id, value } = e.target;
-    setProfileDetails({ ...profileDetails, [id]: value });
+    const { name, value } = e.target;
+    setProfileDetails({ ...profileDetails, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -62,6 +62,7 @@ function ProfilePage() {
                     <Form.Label>First Name</Form.Label>
                     <Form.Control
                       type="text"
+                      name="first_name"
                       value={profileDetails.first_name}
                       onChange={handleProfileDetailsChange}
                     />
@@ -70,6 +71,7 @@ function ProfilePage() {
                     <Form.Label>Last Name</Form.Label>
                     <Form.Control
                       type="text"
+                      name="last_name"
                       value={profileDetails.last_name}
                       onChange={handleProfileDetailsChange}
                     />
@@ -78,6 +80,7 @@ function ProfilePage() {
                     <Form.Label>Email</Form.Label>
                     <Form.Control
                       type="email"
+                      name="email"
                       value={profileDetails.email}
                       onChange={handleProfileDetailsChange}
                     />
@@ -86,6 +89,7 @@ function ProfilePage() {
                     <Form.Label>Phone Number</Form.Label>
                     <Form.Control
                       type="text"
+                      name="phone_number"
                       value={profileDetails.phone_number}
                       onChange={handleProfileDetailsChange}
                     />
