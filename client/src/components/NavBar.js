@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { Container, Navbar, Nav, Button } from 'react-bootstrap';
 import { logoutUser } from '../ApiConfig/api';
 import { useNavigate } from 'react-router-dom';
@@ -7,8 +8,8 @@ function NavBar() {
   const navigate = useNavigate();
 
   const handleLogOut = () => {
-    console.log("Goodbye!")
     const user_token = JSON.parse(localStorage.getItem("user")).token
+    console.log("Goodbye!")
 
     logoutUser(user_token)
       .then((response) => {
@@ -43,11 +44,13 @@ function NavBar() {
           <Nav>
             <Nav.Link href="/about">About</Nav.Link>
           </Nav>
-          <Navbar.Text>
-            Signed in as: <a href="/profile">PERSON</a>
-          </Navbar.Text>
           {localStorage.getItem("user") && 
-            <Button variant="outline-danger" onClick={handleLogOut}>Logout</Button>
+            <>
+              <Button variant="outline-danger" onClick={handleLogOut}>Logout</Button>
+              <Navbar.Text>
+                Signed in as: <a href="/profile">{JSON.parse(localStorage.getItem("user")).id}</a>
+              </Navbar.Text>
+            </>
           }
           {!localStorage.getItem("user") && 
             <Button variant="outline-danger" onClick={() => navigate("/login")}>Log In</Button>

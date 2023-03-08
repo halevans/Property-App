@@ -6,18 +6,15 @@ import { checkTokenValidity } from '../ApiConfig/api';
 function ProfilePage() {
 
   const navigate = useNavigate();
-
   const [authenticatedUser, setAuthenticated] = useState(null);
-
+  const [editMode, setEditMode] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
   const [profileDetails, setProfileDetails] = useState({
     first_name: 'Joe',
     last_name: 'Bloggs',
     email: 'john@example.com',
     phone_number: '07898765432'
   });
-
-  const [editMode, setEditMode] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -115,4 +112,4 @@ function ProfilePage() {
   }
 }
 
-export default ProfilePage
+export default ProfilePage;
