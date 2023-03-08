@@ -11,16 +11,22 @@ function LandingPage() {
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    checkTokenValidity(storedUser.token)
-    .then((response) => {
-      setAuthenticated(storedUser);
-    })
-    .catch((error) => {
-      console.log(error)
-    //   localStorage.removeItem("user");
-    //   navigate("/login");
-    })
-  }, [navigate]);
+    if (storedUser) {
+      checkTokenValidity(storedUser.token)
+      .then((response) => {
+        setAuthenticated(storedUser);
+      })
+      .catch((error) => {
+        localStorage.removeItem("user");
+        navigate("/login");
+      })}
+    else {
+      navigate("/login");
+    }
+    }, [navigate]);
+
+
+
   
   if (!authenticatedUser) {
     return null
