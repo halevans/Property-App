@@ -33,3 +33,10 @@ export const getProperties = (token) => {
   })
 }
 
+export const getOffers = (token, house_id) => {
+  return axios.get(`${apiUrl}/house_offers/${house_id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+}

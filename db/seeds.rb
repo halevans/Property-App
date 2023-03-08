@@ -15,7 +15,7 @@ user_usman = User.create!(first_name: "Usman", last_name: "Bashir", phone_number
 puts "*** Users seeded! ***"
 
 
-user_hal.houses.create!(asking_price: 250000, no_rooms: 2, img_url: "https://en.wikipedia.org/wiki/Tiny-house_movement#/media/File:Tiny_house,_Portland.jpg")
+user_hal.houses.create!(asking_price: 250000, no_rooms: 2, img_url: "https://media.onthemarket.com/properties/629350/1428113043/image-0-1024x1024.jpg")
 user_hal.houses.create!(asking_price: 1800000, no_rooms: 6, img_url: "https://media.onthemarket.com/properties/629350/1428113043/image-0-1024x1024.jpg")
 user_hal.houses.create!(asking_price: 350000, no_rooms: 3, img_url: "https://res.cloudinary.com/simpleview/image/upload/v1641976068/clients/norway/Treetop_Cabins_Oslofjord_Gunnar_B_kkevold_Oi_design_Tretopphytter_Oslofjord_1__c182c0aa-693a-472c-b46b-333ad8c97dbf.jpg")
 

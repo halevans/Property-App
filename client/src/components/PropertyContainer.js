@@ -9,19 +9,21 @@ function PropertyContainer(props) {
     getProperties(props.user.token)
     .then((response) => {
       setSaleProperties(response.data)
-      console.log(response.data)
     })
     .catch((error)=> {
       console.log(error)
     })
-  }, [])
+  }, [props.user.token])
 
-  console.log(saleProperties)
   const allProperties = saleProperties.map((property, index) => {
-    return <PropertyItem propertyDetails={property} key={index}/>})
+    return <PropertyItem propertyDetails={property} user={props.user} key={index}/>})
 
   return (
-    (allProperties)
+    <>
+      <h1>Properties on the Market...</h1>
+      {allProperties}
+      </>
+
   )
 }
 
