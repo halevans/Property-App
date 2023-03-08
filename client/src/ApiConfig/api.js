@@ -17,3 +17,19 @@ export const logoutUser = (token) => {
   });
 }
 
+export const checkTokenValidity = (token) => {
+  return axios.get(`${apiUrl}/users/tokens/info`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+});
+}
+
+export const getProperties = (token) => {
+  return axios.get(`${apiUrl}/houses`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+}
+
