@@ -1,27 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { checkTokenValidity } from '../ApiConfig/api';
+import PropertyContainer from '../components/PropertyContainer';
 
 function LandingPage() {
 
   const navigate = useNavigate();
 
-  const [authenticated, setAuthenticated] = useState(null);
+  const [authenticatedUser, setAuthenticated] = useState(null);
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      setAuthenticated(loggedInUser);
-    } else {
-      console.log("Redirecting to Login Page...")
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      checkTokenValidity(storedUser.token)
+      .then((response) => {
+        setAuthenticated(storedUser);
+      })
+      .catch((error) => {
+        localStorage.removeItem("user");
+        navigate("/login");
+      })}
+    else {
       navigate("/login");
     }
-  }, [navigate]);
+    }, [navigate]);
 
-  if (!authenticated) {
+
+
+  
+  if (!authenticatedUser) {
     return null
   } else {
     return (
-      <div>LandingPage</div>
+      <PropertyContainer user={authenticatedUser}/>
     )
   }
 }
