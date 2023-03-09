@@ -72,12 +72,12 @@ function PropertyContainer(props) {
       {props.profile_page && <div style={{ padding: '0.5rem' }}>
                                 <Button onClick={togglePropertyModalOpen} variant="primary" size="m">Add Property<i className="bi bi-plus-circle-fill ml-2"></i></Button>
                               </div>}
-      <PropertyFormModal
+      {/* <PropertyFormModal
               show={showAddPropertyModal}
               onHide={togglePropertyModalClose}
               user={props.user}
               propertyDetails={props.propertyDetails}
-            />
+            /> */}
       </>
 
   )

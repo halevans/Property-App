@@ -90,7 +90,7 @@ function PropertyItem(props) {
               show={showOfferModal}
               onHide={toggleOfferModalClose}
               user={props.user}
-              propertydetails={props.propertyDetails} // propertydetails lowercase due to React warning on propertyDetails
+              propertyDetails={props.propertyDetails} // propertydetails lowercase due to React warning on propertyDetails
               handleOfferAdded={handleOfferAdded}
             />
 

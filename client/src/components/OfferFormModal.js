@@ -15,10 +15,10 @@ function OfferFormModal(props) {
     console.log("Submit");
     console.log(offerPrice);
     console.log(props.user);
-    console.log(props.propertydetails);
+    console.log(props.propertyDetails);
     const offer_info = {
       user_id: props.user.id,
-      house_id: props.propertydetails.id,
+      house_id: props.propertyDetails.id,
       offer_price: offerPrice
     }
     newOffer(props.user.token, offer_info)
@@ -42,7 +42,7 @@ function OfferFormModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          <p>Asking price: £{props.propertydetails.asking_price.toLocaleString()}</p>
+          <p>Asking price: £{props.propertyDetails.asking_price.toLocaleString()}</p>
         </Modal.Title>
       </Modal.Header>
 
