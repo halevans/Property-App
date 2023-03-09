@@ -10,7 +10,7 @@ function OfferFormModal(props) {
     setOfferPrice(e.target.value);
   }
 
-  const handleLoginSubmit = (e) => {
+  const handleOfferSubmit = (e) => {
     e.preventDefault();
     const offer_info = {
       user_id: props.user.id,
@@ -20,6 +20,8 @@ function OfferFormModal(props) {
     newOffer(props.user.token, offer_info)
     .then((response) => {
       console.log(response.data);
+      // Call the callback function passed from PropertyItem to update the state with the newly added offer
+      props.handleOfferAdded(response.data);
     })
     .catch((error) => {
       console.log(error);
@@ -36,12 +38,12 @@ function OfferFormModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          <p>Make Offer</p>
+          <p>Asking price: £{props.propertyDetails.asking_price.toLocaleString()}</p>
         </Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-        <Form onSubmit={handleLoginSubmit}>
+        <Form onSubmit={handleOfferSubmit}>
           <Form.Group className="mb-3" controlId="LoginFormEmail">
             <Form.Label>Offer Price:</Form.Label>
             <Form.Control
