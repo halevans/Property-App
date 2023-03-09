@@ -67,7 +67,7 @@ function PropertyItem(props) {
 
   // Map the offers to offer components and sort them in price descending 
   const allOffers = propertyOffers.sort((a,b) => b.offer_price - a.offer_price).map((offer, index) => {
-    return (<Offer offer={offer} handleOfferDelete={handleOfferDelete} key={index}/>)
+    return (<Offer offer={offer} handleOfferDelete={handleOfferDelete} user={props.user} key={index}/>)
   })
 
   // If there are offers, display as an accordion, if not present no offers currently....
