@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { editProperty, getProperties, newProperty } from '../ApiConfig/api'
 import PropertyItem from './PropertyItem'
-import { Button} from "react-bootstrap";
+import { Button, Container} from "react-bootstrap";
 import { deleteProperty, getOffers } from '../ApiConfig/api';
 import PropertyFormModal from './PropertyFormModal';
 
@@ -76,19 +76,31 @@ function PropertyContainer(props) {
 
   return (
     <>
-      {!props.profile_page ? <h1>Properties on the Market...</h1> : <h1>Your Properties...</h1>}
-      {allProperties}
-      {props.profile_page && <div style={{ padding: '0.5rem' }}>
-                                <Button onClick={togglePropertyModalOpen} variant="primary" size="m">Add Property<i className="bi bi-plus-circle-fill ml-2"></i></Button>
-                              </div>}
-      <PropertyFormModal
-              show={showAddPropertyModal}
-              onHide={togglePropertyModalClose}
-              user={props.user}
-              handleAddProperty={handleAddProperty}
-            />
-      </>
+      <Container className='d-flex justify-content-between align-items-center pt-4'>
+        <>
+          <h1>{props.profile_page ? 'Your Properties' : 'Properties on the Market'}</h1>
 
+          {props.profile_page && (
+            <div style={{ padding: '0.5rem' }}>
+              <Button onClick={togglePropertyModalOpen} variant="primary" size="lg">
+                Add Property <i className="bi bi-plus-circle-fill ml-2"></i>
+              </Button>
+            </div>
+          )}
+        </>
+      </Container>
+      
+
+      {allProperties}
+
+
+      <PropertyFormModal
+        show={showAddPropertyModal}
+        onHide={togglePropertyModalClose}
+        user={props.user}
+        handleAddProperty={handleAddProperty}
+      />
+    </>
   )
 }
 

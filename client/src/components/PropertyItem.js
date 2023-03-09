@@ -104,7 +104,7 @@ function PropertyItem(props) {
             <Card.Img
               variant="left"
               src={props.propertyDetails.img_url}
-              style={{ height: '10rem', width: '12.5rem', objectFit: 'cover', marginRight: '1rem' }}
+              style={{ height: '10rem', width: '12.5rem', objectFit: 'cover', marginRight: '1rem', borderRadius:'5px'}}
             />
             <div>
               <h5 className="mb-0">£{props.propertyDetails.asking_price.toLocaleString()}</h5>

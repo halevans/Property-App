@@ -60,9 +60,6 @@ function NavBar() {
             {/* <Nav.Link href="/login">Log In</Nav.Link> */}
             <Nav.Link href="/marketplace">Marketplace</Nav.Link>
           </Nav>
-          <Nav>
-            <Nav.Link href="/about">About</Nav.Link>
-          </Nav>
           {user && 
             <>
               <Navbar.Text>
