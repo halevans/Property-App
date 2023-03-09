@@ -62,9 +62,6 @@ function PropertyItem(props) {
     }
   }
 
-  const handleEditProperty = () => {}
-
-
   // Map the offers to offer components and sort them in price descending 
   const allOffers = propertyOffers.sort((a,b) => b.offer_price - a.offer_price).map((offer, index) => {
     return (<Offer offer={offer} handleOfferDelete={handleOfferDelete} user={props.user} key={index}/>)
