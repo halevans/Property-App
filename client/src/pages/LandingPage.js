@@ -32,7 +32,7 @@ function LandingPage() {
     return null
   } else {
     return (
-      <PropertyContainer user={authenticatedUser}/>
+      <PropertyContainer user={authenticatedUser} profile_page={false}/>
     )
   }
 }
