@@ -23,7 +23,6 @@ function LoginForm() {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    console.log("Login User");
 
     loginUser(loginDetails)
       .then((response) => {
@@ -39,6 +38,8 @@ function LoginForm() {
         // Redirect page to landing page
         console.log("Navigating to landing page");
         navigate("/landing-page");
+        // TODO change below to prop drill to App and back down to NavBar
+        window.location.reload(false); // to refresh the NavBar
       })
       .catch((error) => {
         if (error.response) {

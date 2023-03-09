@@ -25,6 +25,11 @@ function NavBar() {
     }
   }, []);
 
+  // const handleLogIn = (user) => {
+  //   setUser(user);
+  //   localStorage.setItem("user", JSON.stringify(user));
+  // }
+
   const handleLogOut = () => {
     const user_token = JSON.parse(localStorage.getItem("user")).token
     console.log("Goodbye!")
@@ -32,6 +37,7 @@ function NavBar() {
     logoutUser(user_token)
       .then((response) => {
         localStorage.removeItem("user");
+        setUser(null);
         navigate("/login");
       })
       .catch((error) => {
@@ -65,14 +71,14 @@ function NavBar() {
           {user && 
             <>
               <Navbar.Text>
-                Signed in as: <a href="/profile">{user.first_name}</a>
+                Signed in as: <a href="/profile">{user.first_name} {user.last_name}</a>
               </Navbar.Text>
               <Button className="ms-3" variant="outline-danger" onClick={handleLogOut}>Logout</Button>
             </>
           }
-          {!user && 
+          {/* {!user && 
             <Button variant="outline-danger" onClick={() => navigate("/login")}>Log In</Button>
-          }
+          } */}
         </Navbar.Collapse>
       </Container>
     </Navbar>
