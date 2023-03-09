@@ -31,8 +31,6 @@ function OfferFormModal(props) {
       console.log(error);
     })
   }
-  
-  console.log(props)
 
   return (
     <Modal
