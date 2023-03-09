@@ -31,9 +31,11 @@ function LoginPage() {
       <Container style={{ width: '50%', margin: '1em auto', backgroundColor: '#f8f8f8', borderRadius: '10px' }}>
         <LoginForm />
       </Container>
-      <Container className="text-center m-5">
-        <h4>Not Registered?</h4>
-        <Button variant="secondary" onClick={toggleRegisterModalOpen}>Sign Up</Button>
+      <Container style={{ width: '50%', margin: '1em auto', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <h4>Not Registered?</h4>
+          <Button variant="secondary" onClick={toggleRegisterModalOpen}>Sign Up</Button>
+        </div>
       </Container>
 
       <RegisterFormModal
