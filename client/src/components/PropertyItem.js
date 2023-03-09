@@ -21,7 +21,7 @@ function PropertyItem(props) {
 
 
 
-  const allOffers = propertyOffers.map((offer, index) => {
+  const allOffers = propertyOffers.sort((a,b) => b.offer_price - a.offer_price).map((offer, index) => {
     return (<Offer offer={offer} key={index}/>)
   })
 
