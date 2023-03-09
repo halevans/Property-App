@@ -72,3 +72,11 @@ export const deleteProperty = (token, house_id) => {
     }
   })
 }
+
+export const newProperty = (token, property_info) => {
+  return axios.post(`${apiUrl}/houses`, property_info, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+}

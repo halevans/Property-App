@@ -24,7 +24,6 @@ class OffersController < ApplicationController
   end
 
   def house_offers 
-    p params
     @offers = Offer.where(house_id: params[:house_id])
 
     render json: @offers

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { getProperties } from '../ApiConfig/api'
+import { getProperties, newProperty } from '../ApiConfig/api'
 import PropertyItem from './PropertyItem'
 import { Button} from "react-bootstrap";
 import { deleteProperty, getOffers } from '../ApiConfig/api';
-import PropertyFormModal from './OfferFormModal';
+import PropertyFormModal from './PropertyFormModal';
 
 
 function PropertyContainer(props) {
@@ -25,7 +25,8 @@ function PropertyContainer(props) {
     })
   }, [props.user.token])
 
-    // Handle the delete property
+    // TODO Move down similar to handleAddProperty
+    // Handle the delete property 
     const handleDeleteProperty = (e) => {
       // Display a confirmation message
       const confirmed = window.confirm('Are you sure you want to delete this property?');
@@ -44,13 +45,15 @@ function PropertyContainer(props) {
       }
     }
 
+    const handleAddProperty = (newProperty) => {
+      setProperties([...properties, newProperty])
+    }
+
     const togglePropertyModalOpen = () => {
-      console.log("Open")
       setPropertyModal(true)
     }
   
     const togglePropertyModalClose = () => {
-      console.log("Close")
       setPropertyModal(false)
     }
 
@@ -72,12 +75,12 @@ function PropertyContainer(props) {
       {props.profile_page && <div style={{ padding: '0.5rem' }}>
                                 <Button onClick={togglePropertyModalOpen} variant="primary" size="m">Add Property<i className="bi bi-plus-circle-fill ml-2"></i></Button>
                               </div>}
-      {/* <PropertyFormModal
+      <PropertyFormModal
               show={showAddPropertyModal}
               onHide={togglePropertyModalClose}
               user={props.user}
-              propertyDetails={props.propertyDetails}
-            /> */}
+              handleAddProperty={handleAddProperty}
+            />
       </>
 
   )
