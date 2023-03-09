@@ -7,28 +7,33 @@ import OfferFormModal from './OfferFormModal';
 
 function PropertyItem(props) {
 
-  const [propertyOffers, setPropertyOffers] = useState([])
-  const [showOfferModal, setOfferModal] = useState(false)
+  const [propertyOffers, setPropertyOffers] = useState([]);
+  const [showOfferModal, setOfferModal] = useState(false);
 
   useEffect(() => {
     getOffers(props.user.token, props.propertyDetails.id)
     .then((response) => {
       // console.log(response)
-      setPropertyOffers(response.data)
+      setPropertyOffers(response.data);
     })
     .catch((error)=> {
-      console.log(error)
+      console.log(error);
     })
-  }, [props.user.token, props.propertyDetails.id])
+  }, [props.user.token, props.propertyDetails.id]);
 
   const toggleOfferModalOpen = () => {
-    console.log("Open")
-    setOfferModal(true)
+    console.log("Open");
+    setOfferModal(true);
   }
 
   const toggleOfferModalClose = () => {
-    console.log("Close")
-    setOfferModal(false)
+    console.log("Close");
+    setOfferModal(false);
+  }
+
+  const handleOfferAdded = (newOffer) => {
+    // Update the state with the newly added offer
+    setPropertyOffers([...propertyOffers, newOffer]);
   }
 
   const allOffers = propertyOffers.sort((a,b) => b.offer_price - a.offer_price).map((offer, index) => {
@@ -68,7 +73,8 @@ function PropertyItem(props) {
               show={showOfferModal}
               onHide={toggleOfferModalClose}
               user={props.user}
-              propertyDetails={props.propertyDetails}
+              propertydetails={props.propertyDetails} // propertydetails lowercase due to React warning on propertyDetails
+              handleOfferAdded={handleOfferAdded}
             />
 
           </Card.Body>
