@@ -15,7 +15,7 @@ function PropertyContainer(props) {
     })
   }, [props.user.token])
 
-  const allProperties = saleProperties.map((property, index) => {
+  const allProperties = saleProperties.filter(item => item.user_id !== props.user.id).map((property, index) => {
     return <PropertyItem propertyDetails={property} user={props.user} key={index}/>})
 
   return (
