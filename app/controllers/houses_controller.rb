@@ -23,6 +23,10 @@ class HousesController < ApplicationController
     end
   end
 
+  def destroy
+    @house.destroy
+  end
+
   private 
   
   def set_house

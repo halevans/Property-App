@@ -64,3 +64,11 @@ export const deleteOffer = (token, offer_id) => {
     }
   });
 }
+
+export const deleteProperty = (token, house_id) => {
+  return axios.delete(`${apiUrl}/houses/${house_id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+}

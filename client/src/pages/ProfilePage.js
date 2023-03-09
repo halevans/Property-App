@@ -27,7 +27,6 @@ function ProfilePage() {
         // Get user info
         getUserInfo(storedUser.id ,storedUser.token)
         .then((response) => {
-          console.log(response)
           //store user info in component state
           setProfileDetails({
             first_name: response.data.first_name,
