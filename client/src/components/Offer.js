@@ -5,14 +5,6 @@ function Offer(props) {
 
   const offerDate = new Date(props.offer.created_at).toLocaleDateString('en-GB');
 
-  const handleOfferDelete = () => {
-    const confirmed = window.confirm('Are you sure you want to delete this offer?');
-    if (confirmed) {
-      deleteOffer(props.token, props.offer.id)
-      console.log("Offer Deleted")
-    }
-  }
-
   return (
     <Accordion.Body>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
