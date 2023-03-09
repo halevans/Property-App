@@ -25,9 +25,12 @@ user_usman.houses.create!(asking_price: 100000, no_rooms: 3, img_url: "https://l
 
 puts "*** Houses seeded! ***"
 
-
+user_hal.offers.create!(offer_price: 160000, house_id: 5)
 user_hal.offers.create!(offer_price: 120000, house_id: 5)
+user_hal.offers.create!(offer_price: 220000, house_id: 5)
 user_tom.offers.create!(offer_price: 260000, house_id: 1)
+user_tom.offers.create!(offer_price: 320000, house_id: 1)
+user_tom.offers.create!(offer_price: 180000, house_id: 1)
 
 puts "*** Offers seeded! ***"
 
