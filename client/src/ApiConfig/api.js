@@ -22,7 +22,7 @@ export const checkTokenValidity = (token) => {
     headers: {
       Authorization: `Bearer ${token}`
     }
-});
+  });
 }
 
 export const getProperties = (token) => {
@@ -30,11 +30,27 @@ export const getProperties = (token) => {
     headers: {
       Authorization: `Bearer ${token}`
     }
-  })
+  });
+}
+
+export const getUserInfo = (user_id, token) => {
+  return axios.get(`${apiUrl}/users/${user_id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 }
 
 export const getOffers = (token, house_id) => {
   return axios.get(`${apiUrl}/house_offers/${house_id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+}
+
+export const newOffer = (token, offer_info) => {
+  return axios.post(`${apiUrl}/offers`, offer_info, {
     headers: {
       Authorization: `Bearer ${token}`
     }

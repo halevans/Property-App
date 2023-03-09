@@ -1,14 +1,33 @@
+import React, { useState, useEffect } from 'react';
 import { Container, Navbar, Nav, Button } from 'react-bootstrap';
-import { logoutUser } from '../ApiConfig/api';
+import { logoutUser, getUserInfo } from '../ApiConfig/api';
 import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
 
   const navigate = useNavigate();
+  const [user, setUser] = useState(null); //initialize user state as null
+
+  useEffect(() => {
+    if (!JSON.parse(localStorage.getItem("user"))) {
+      console.log("No user in localStorage")
+    } else {
+      // fetch user info from API on component mount
+      const user = JSON.parse(localStorage.getItem("user"));
+      getUserInfo(user.id ,user.token)
+        .then((response) => {
+          setUser(response.data); //store user info in component state
+        })
+        .catch((error) => {
+          //handle error
+          console.log(error);
+        });
+    }
+  }, []);
 
   const handleLogOut = () => {
-    console.log("Goodbye!")
     const user_token = JSON.parse(localStorage.getItem("user")).token
+    console.log("Goodbye!")
 
     logoutUser(user_token)
       .then((response) => {
@@ -43,13 +62,15 @@ function NavBar() {
           <Nav>
             <Nav.Link href="/about">About</Nav.Link>
           </Nav>
-          <Navbar.Text>
-            Signed in as: <a href="#login">PERSON</a>
-          </Navbar.Text>
-          {localStorage.getItem("user") && 
-            <Button variant="outline-danger" onClick={handleLogOut}>Logout</Button>
+          {user && 
+            <>
+              <Navbar.Text>
+                Signed in as: <a href="/profile">{user.first_name}</a>
+              </Navbar.Text>
+              <Button className="ms-3" variant="outline-danger" onClick={handleLogOut}>Logout</Button>
+            </>
           }
-          {!localStorage.getItem("user") && 
+          {!user && 
             <Button variant="outline-danger" onClick={() => navigate("/login")}>Log In</Button>
           }
         </Navbar.Collapse>

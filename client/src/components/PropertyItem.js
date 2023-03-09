@@ -1,12 +1,14 @@
-import { Container, Card, Accordion } from 'react-bootstrap';
+import { Button, Container, Card, Accordion } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react'
 import { getOffers } from '../ApiConfig/api';
 import Offer from './Offer';
+import OfferFormModal from './OfferFormModal';
 
 
 function PropertyItem(props) {
 
   const [propertyOffers, setPropertyOffers] = useState([])
+  const [showOfferModal, setOfferModal] = useState(false)
 
   useEffect(() => {
     getOffers(props.user.token, props.propertyDetails.id)
@@ -19,7 +21,15 @@ function PropertyItem(props) {
     })
   }, [props.user.token, props.propertyDetails.id])
 
+  const toggleOfferModalOpen = () => {
+    console.log("Open")
+    setOfferModal(true)
+  }
 
+  const toggleOfferModalClose = () => {
+    console.log("Close")
+    setOfferModal(false)
+  }
 
   const allOffers = propertyOffers.sort((a,b) => b.offer_price - a.offer_price).map((offer, index) => {
     return (<Offer offer={offer} key={index}/>)
@@ -40,6 +50,9 @@ function PropertyItem(props) {
     <>
       <Container>
         <Card style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', margin: '1rem 0' }}>
+          <div style={{ position: 'absolute', top: '0', right: '0', padding: '0.5rem' }}>
+            <Button onClick={toggleOfferModalOpen} variant="primary" size="sm">Add Offer <i className="bi bi-plus-circle-fill ml-2"></i></Button>
+          </div>
           <Card.Body className="d-flex align-items-center">
             <Card.Img
               variant="left"
@@ -50,6 +63,14 @@ function PropertyItem(props) {
               <h5 className="mb-0">£{props.propertyDetails.asking_price.toLocaleString()}</h5>
               <p className="text-muted mb-0">{props.propertyDetails.no_rooms} rooms</p>
             </div>
+
+            <OfferFormModal
+              show={showOfferModal}
+              onHide={toggleOfferModalClose}
+              user={props.user}
+              propertyDetails={props.propertyDetails}
+            />
+
           </Card.Body>
           <Accordion>
             <Accordion.Item eventKey="1">
