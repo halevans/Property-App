@@ -78,7 +78,8 @@ function PropertyContainer(props) {
     <>
       <Container className='d-flex justify-content-between align-items-center pt-4'>
         <>
-          <h1>{props.profile_page ? 'Your Properties' : 'Properties on the Market'}</h1>
+          <h1><i class="fa-solid fa-house"></i>&nbsp;&nbsp; 
+            {props.profile_page ? 'Your Properties' : 'Properties on the Market'}</h1>
 
           {props.profile_page && (
             <div style={{ padding: '0.5rem' }}>

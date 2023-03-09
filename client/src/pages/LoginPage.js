@@ -33,6 +33,7 @@ function LoginPage() {
       </Container>
       <Container style={{ width: '50%', margin: '1em auto', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <i class="fa-solid fa-house-chimney fa-2x"></i>
           <h4>Not Registered?</h4>
           <Button variant="secondary" onClick={toggleRegisterModalOpen}>Sign Up</Button>
         </div>
