@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { checkTokenValidity } from '../ApiConfig/api';
 import { getUserInfo } from '../ApiConfig/api';
@@ -55,7 +56,9 @@ function ProfilePage() {
   } else {
     return (
       <>
-        <h1>Profile Page</h1>
+        <Container className='py-4'>
+          <h1>Your Profile</h1>
+        </Container>
         <UserDetails profileDetails={profileDetails} setProfileDetails={setProfileDetails}/>
         <PropertyContainer user={authenticatedUser} profile_page={true}/>
       </>

@@ -47,7 +47,7 @@ function OfferFormModal(props) {
             <Form.Label>Offer Price:</Form.Label>
             <Form.Control
               type="number"
-              step={10000}
+              step={100}
               name="offerPrice"
               placeholder="Enter offer price"
               onChange={handleInputChange} />

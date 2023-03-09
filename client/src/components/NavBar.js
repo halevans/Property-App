@@ -60,9 +60,6 @@ function NavBar() {
             {/* <Nav.Link href="/login">Log In</Nav.Link> */}
             <Nav.Link href="/marketplace">Marketplace</Nav.Link>
           </Nav>
-          <Nav>
-            <Nav.Link href="/about">About</Nav.Link>
-          </Nav>
           {user && 
             <>
               <Navbar.Text>
@@ -71,9 +68,6 @@ function NavBar() {
               <Button className="ms-3" variant="outline-danger" onClick={handleLogOut}>Logout</Button>
             </>
           }
-          {/* {!user && 
-            <Button variant="outline-danger" onClick={() => navigate("/")}>Log In</Button>
-          } */}
         </Navbar.Collapse>
       </Container>
     </Navbar>

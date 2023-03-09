@@ -62,9 +62,6 @@ function PropertyItem(props) {
     }
   }
 
-  const handleEditProperty = () => {}
-
-
   // Map the offers to offer components and sort them in price descending 
   const allOffers = propertyOffers.sort((a,b) => b.offer_price - a.offer_price).map((offer, index) => {
     return (<Offer offer={offer} handleOfferDelete={handleOfferDelete} user={props.user} key={index}/>)
@@ -107,7 +104,7 @@ function PropertyItem(props) {
             <Card.Img
               variant="left"
               src={props.propertyDetails.img_url}
-              style={{ height: '10rem', width: '12.5rem', objectFit: 'cover', marginRight: '1rem' }}
+              style={{ height: '10rem', width: '12.5rem', objectFit: 'cover', marginRight: '1rem', borderRadius:'5px'}}
             />
             <div>
               <h5 className="mb-0">£{props.propertyDetails.asking_price.toLocaleString()}</h5>
