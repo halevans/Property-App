@@ -1,8 +1,9 @@
 import { Button, Container, Card, Accordion } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react'
-import { getOffers } from '../ApiConfig/api';
 import Offer from './Offer';
 import OfferFormModal from './OfferFormModal';
+import { getOffers } from '../ApiConfig/api';
+
 
 
 function PropertyItem(props) {
@@ -31,6 +32,8 @@ function PropertyItem(props) {
     setOfferModal(false)
   }
 
+
+
   // Map the offers to offer components and sort them in price descending 
   const allOffers = propertyOffers.sort((a,b) => b.offer_price - a.offer_price).map((offer, index) => {
     return (<Offer offer={offer} key={index}/>)
@@ -53,7 +56,7 @@ function PropertyItem(props) {
   if (!props.profile_page) {
     actionButton = <Button onClick={toggleOfferModalOpen} variant="primary" size="sm">Add Offer <i className="bi bi-plus-circle-fill ml-2"></i></Button>            
   } else {     
-  actionButton = <Button variant="danger" onClick={null}>Delete<i className="bi bi-trash-fill ml-2"></i></Button>
+  actionButton = <Button variant="danger" onClick={props.handleDeleteProperty} id={props.propertyDetails.id}>Delete<i className="bi bi-trash-fill ml-2"></i></Button>
 
   }
 

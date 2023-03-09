@@ -56,3 +56,11 @@ export const newOffer = (token, offer_info) => {
     }
   })
 }
+
+export const deleteProperty = (token, house_id) => {
+  return axios.delete(`${apiUrl}/houses/${house_id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+}

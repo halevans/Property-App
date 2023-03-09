@@ -2,31 +2,65 @@ import React, { useEffect, useState } from 'react'
 import { getProperties } from '../ApiConfig/api'
 import PropertyItem from './PropertyItem'
 import { Button} from "react-bootstrap";
+import { deleteProperty, getOffers } from '../ApiConfig/api';
+import PropertyFormModal from './OfferFormModal';
+
 
 function PropertyContainer(props) {
-  const [properties, setSaleProperties] = useState([])
+  const [properties, setProperties] = useState([])
+  const [showAddPropertyModal, setPropertyModal] = useState(false)
 
   useEffect(() => {
     getProperties(props.user.token)
     .then((response) => {
-      setSaleProperties(response.data)
+      if (props.profile_page) {
+        setProperties(response.data.filter(item => item.user_id === props.user.id))
+      } else {
+        setProperties(response.data.filter(item => item.user_id !== props.user.id))
+      }
+      
     })
     .catch((error)=> {
       console.log(error)
     })
   }, [props.user.token])
 
-  let propertiesToRender
-  if (props.profile_page) {
-     propertiesToRender = properties.filter(item => item.user_id === props.user.id)
-  } else {
-    propertiesToRender = properties.filter(item => item.user_id !== props.user.id)
-  }
+    // Handle the delete property
+    const handleDeleteProperty = (e) => {
+      // Display a confirmation message
+      const confirmed = window.confirm('Are you sure you want to delete this property?');
+      // Check if the user confirmed the deletion
+      if (confirmed) {
+        // If the user confirmed, call the deleteProperty function with the token and property ID
+        console.log(e.target, e.target.id)
+        deleteProperty(props.user.token, e.target.id)
+        .then((response) => {
+          console.log(`Deleted Propery house_id: ${e.target.id}`)
+          setProperties(properties.filter(property => property.id != e.target.id))
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+      }
+    }
 
-  const allProperties = propertiesToRender.map((property, index) => {
+    const togglePropertyModalOpen = () => {
+      console.log("Open")
+      setPropertyModal(true)
+    }
+  
+    const togglePropertyModalClose = () => {
+      console.log("Close")
+      setPropertyModal(false)
+    }
+
+
+
+  const allProperties = properties.map((property, index) => {
     return <PropertyItem propertyDetails={property} 
                          profile_page={props.profile_page} 
-                         user={props.user} 
+                         user={props.user}
+                         handleDeleteProperty={handleDeleteProperty}
                          key={index}/>})
 
   
@@ -36,8 +70,14 @@ function PropertyContainer(props) {
       {!props.profile_page ? <h1>Properties on the Market...</h1> : <h1>Your Properties...</h1>}
       {allProperties}
       {props.profile_page && <div style={{ padding: '0.5rem' }}>
-                                <Button onClick={null} variant="primary" size="m">Add Property<i className="bi bi-plus-circle-fill ml-2"></i></Button>
+                                <Button onClick={togglePropertyModalOpen} variant="primary" size="m">Add Property<i className="bi bi-plus-circle-fill ml-2"></i></Button>
                               </div>}
+      <PropertyFormModal
+              show={showAddPropertyModal}
+              onHide={togglePropertyModalClose}
+              user={props.user}
+              propertyDetails={props.propertyDetails}
+            />
       </>
 
   )
