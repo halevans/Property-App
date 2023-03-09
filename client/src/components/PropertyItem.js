@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react'
 import Offer from './Offer';
 import OfferFormModal from './OfferFormModal';
 import { deleteOffer, getOffers } from '../ApiConfig/api';
+import EditPropertyFormModal from './EditPropertyFormModal';
 
 
 function PropertyItem(props) {
 
   const [propertyOffers, setPropertyOffers] = useState([]);
   const [showOfferModal, setOfferModal] = useState(false);
+  const [showEditPropertyModal, setEditPropertyModal] = useState(false);
 
   useEffect(() => {
     getOffers(props.user.token, props.propertyDetails.id)
@@ -29,6 +31,14 @@ function PropertyItem(props) {
   const toggleOfferModalClose = () => {
     console.log("Close");
     setOfferModal(false);
+  }
+
+  const toggleEditPropertyModalOpen = () => {
+    setEditPropertyModal(true)
+  }
+
+  const toggleEditPropertyModalClose = () => {
+    setEditPropertyModal(false)
   }
 
   const handleOfferAdded = (newOffer) => {
@@ -52,6 +62,9 @@ function PropertyItem(props) {
     }
   }
 
+  const handleEditProperty = () => {}
+
+
   // Map the offers to offer components and sort them in price descending 
   const allOffers = propertyOffers.sort((a,b) => b.offer_price - a.offer_price).map((offer, index) => {
     return (<Offer offer={offer} handleOfferDelete={handleOfferDelete} key={index}/>)
@@ -74,7 +87,12 @@ function PropertyItem(props) {
   if (!props.profile_page) {
     actionButton = <Button onClick={toggleOfferModalOpen} variant="primary" size="sm">Add Offer <i className="bi bi-plus-circle-fill ml-2"></i></Button>            
   } else {     
-    actionButton = <Button variant="danger" onClick={props.handleDeleteProperty} id={props.propertyDetails.id}>Delete<i className="bi bi-trash-fill ml-2"></i></Button>
+    actionButton = (  
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <Button variant="primary" onClick={toggleEditPropertyModalOpen} id={props.propertyDetails.id}>Edit<i className="bi bi-pencil-fill ml-2"></i></Button>
+        <Button variant="danger" onClick={props.handleDeleteProperty} id={props.propertyDetails.id}>Delete<i className="bi bi-trash-fill ml-2"></i></Button>
+      </div>
+    )
   }
 
 
@@ -103,6 +121,15 @@ function PropertyItem(props) {
               propertyDetails={props.propertyDetails} // propertydetails lowercase due to React warning on propertyDetails
               handleOfferAdded={handleOfferAdded}
             />
+
+            <EditPropertyFormModal
+                          show={showEditPropertyModal}
+                          onHide={toggleEditPropertyModalClose}
+                          user={props.user}
+                          propertyDetails={props.propertyDetails}
+                          handleEditProperty={props.handleEditProperty}
+                        />
+
 
           </Card.Body>
           <Accordion>

@@ -23,6 +23,14 @@ class HousesController < ApplicationController
     end
   end
 
+  def update
+    if @house.update(house_params)
+      render json: @house
+    else
+      render json: @house.errors, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @house.destroy
   end
