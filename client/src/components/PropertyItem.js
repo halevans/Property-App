@@ -74,7 +74,7 @@ function PropertyItem(props) {
   } else {
       accordion =(
         <Accordion.Body>
-          <p><i class="fa-solid fa-heart-crack"></i>&nbsp; No current offers...</p>
+          <p><i className="fa-solid fa-heart-crack"></i>&nbsp; No current offers...</p>
         </Accordion.Body>
       )
   }

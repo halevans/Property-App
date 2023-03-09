@@ -57,7 +57,7 @@ function ProfilePage() {
     return (
       <>
         <Container className='py-4'>
-          <h1><i class="fa-solid fa-user"></i>&nbsp;&nbsp; Your Profile</h1>
+          <h1><i className="fa-solid fa-user"></i>&nbsp;&nbsp; Your Profile</h1>
         </Container>
         <UserDetails profileDetails={profileDetails} setProfileDetails={setProfileDetails}/>
         <PropertyContainer user={authenticatedUser} profile_page={true}/>
