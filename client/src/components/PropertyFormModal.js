@@ -1,23 +1,26 @@
 import React, { useState } from 'react'
 import { Button, Form, Modal } from "react-bootstrap";
-import { newOffer } from '../ApiConfig/api';
+import { newProperty } from '../ApiConfig/api';
 
-function OfferFormModal(props) {
+function PropertyFormModal(props) {
 
-  const [offerPrice, setOfferPrice] = useState(null);
+  const [propertyDetails, setPropertyDetails] = useState(null);
 
   const handleInputChange = (e) => {
-    setOfferPrice(e.target.value);
+    const { name, value } = e.target;
+    setPropertyDetails({ ...propertyDetails, [name]: value });
   }
 
-  const handleLoginSubmit = (e) => {
+  const handleAddPropertySubmit = (e) => {
     e.preventDefault();
-    const offer_info = {
+    
+    const property_info = {
       user_id: props.user.id,
-      house_id: props.propertyDetails.id,
-      offer_price: offerPrice
+      asking_price: propertyDetails.asking_price,
+      no_rooms: propertyDetails.no_rooms,
+      img_url: propertyDetails.img_url
     }
-    newOffer(props.user.token, offer_info)
+    newProperty(props.user.token, property_info)
     .then((response) => {
       console.log(response.data);
     })
@@ -41,14 +44,26 @@ function OfferFormModal(props) {
       </Modal.Header>
 
       <Modal.Body>
-        <Form onSubmit={handleLoginSubmit}>
+        <Form onSubmit={handleAddPropertySubmit}>
           <Form.Group className="mb-3" controlId="LoginFormEmail">
-            <Form.Label>Offer Price:</Form.Label>
+            <Form.Label>Asking Price:</Form.Label>
             <Form.Control
               type="number"
               step={10000}
-              name="offerPrice"
-              placeholder="Enter offer price"
+              name="asking_price"
+              placeholder="Enter asking price..."
+              onChange={handleInputChange} />
+            <Form.Label>No. of Rooms:</Form.Label>
+            <Form.Control
+              type="number"
+              name="no_rooms"
+              placeholder="Enter no. of rooms..."
+              onChange={handleInputChange} />
+            <Form.Label>Img URL:</Form.Label>
+            <Form.Control
+              type="url"
+              name="img_url"
+              placeholder="Enter IMG url..."
               onChange={handleInputChange} />
           </Form.Group>
           <Button type="submit" onClick={props.onHide}>Submit Offer</Button>
@@ -58,4 +73,4 @@ function OfferFormModal(props) {
   );
 }
 
-export default OfferFormModal;
+export default PropertyFormModal;

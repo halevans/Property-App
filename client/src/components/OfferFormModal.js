@@ -12,10 +12,6 @@ function OfferFormModal(props) {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    console.log("Submit");
-    console.log(offerPrice);
-    console.log(props.user);
-    console.log(props.propertyDetails);
     const offer_info = {
       user_id: props.user.id,
       house_id: props.propertyDetails.id,

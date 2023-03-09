@@ -3,7 +3,7 @@ import { getProperties } from '../ApiConfig/api'
 import PropertyItem from './PropertyItem'
 import { Button} from "react-bootstrap";
 import { deleteProperty, getOffers } from '../ApiConfig/api';
-import PropertyFormModal from './OfferFormModal';
+import PropertyFormModal from './PropertyFormModal';
 
 
 function PropertyContainer(props) {
@@ -45,12 +45,10 @@ function PropertyContainer(props) {
     }
 
     const togglePropertyModalOpen = () => {
-      console.log("Open")
       setPropertyModal(true)
     }
   
     const togglePropertyModalClose = () => {
-      console.log("Close")
       setPropertyModal(false)
     }
 
@@ -76,7 +74,6 @@ function PropertyContainer(props) {
               show={showAddPropertyModal}
               onHide={togglePropertyModalClose}
               user={props.user}
-              propertyDetails={props.propertyDetails}
             />
       </>
 
