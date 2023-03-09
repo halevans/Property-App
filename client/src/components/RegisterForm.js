@@ -45,6 +45,8 @@ function RegisterForm() {
         // Redirect page to landing page
         console.log("Navigating to landing-page");
         navigate("/marketplace");
+        // TODO change below to prop drill to App and back down to NavBar
+        window.location.reload(false); // to refresh the NavBar
       })
       .catch((error) => {
         if (error.response) {
