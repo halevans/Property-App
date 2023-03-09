@@ -68,9 +68,6 @@ function NavBar() {
               <Button className="ms-3" variant="outline-danger" onClick={handleLogOut}>Logout</Button>
             </>
           }
-          {/* {!user && 
-            <Button variant="outline-danger" onClick={() => navigate("/")}>Log In</Button>
-          } */}
         </Navbar.Collapse>
       </Container>
     </Navbar>
