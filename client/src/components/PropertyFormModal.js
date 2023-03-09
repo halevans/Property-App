@@ -13,7 +13,6 @@ function PropertyFormModal(props) {
 
   const handleAddPropertySubmit = (e) => {
     e.preventDefault();
-    console.log('*****')
     const property_info = {
       user_id: props.user.id,
       asking_price: propertyDetails.asking_price,
@@ -23,7 +22,6 @@ function PropertyFormModal(props) {
     newProperty(props.user.token, property_info)
     .then((response) => {
       props.handleAddProperty(response.data)
-      console.log(response.data);
     })
     .catch((error) => {
       console.log(error);
