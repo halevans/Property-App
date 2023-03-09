@@ -62,7 +62,6 @@ function RegisterForm() {
 
   return (
     <>
-      <h2>Register Form</h2>
       <Form onSubmit={handleRegisterSubmit}>
         <Row>
           <Col>

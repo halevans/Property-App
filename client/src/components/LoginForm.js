@@ -57,7 +57,7 @@ function LoginForm() {
 
   return (
     <>
-      <h2>Login Form</h2>
+      <h4>Login</h4>
       <Form onSubmit={handleLoginSubmit}>
         <Form.Group className="mb-3" controlId="LoginFormEmail">
           <Form.Label>Email address</Form.Label>
@@ -79,7 +79,7 @@ function LoginForm() {
             placeholder="Password"
             onChange={handleInputChange} />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button className="my-3" variant="primary" type="submit">
           Submit
         </Button>
       </Form>
