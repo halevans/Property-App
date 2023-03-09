@@ -80,3 +80,11 @@ export const newProperty = (token, property_info) => {
     }
   })
 }
+
+export const editProperty = (token, property_info) => {
+  return axios.patch(`${apiUrl}/houses/${property_info.house_id}`, property_info, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+}

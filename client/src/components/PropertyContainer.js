@@ -57,9 +57,7 @@ function PropertyContainer(props) {
       setPropertyModal(false)
     }
 
-
-
-  const allProperties = properties.map((property, index) => {
+  const allProperties = properties.sort((a,b) => b.asking_price - a.asking_price).map((property, index) => {
     return <PropertyItem propertyDetails={property} 
                          profile_page={props.profile_page} 
                          user={props.user}
