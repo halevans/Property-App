@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getProperties } from '../ApiConfig/api'
+import { getProperties, newProperty } from '../ApiConfig/api'
 import PropertyItem from './PropertyItem'
 import { Button} from "react-bootstrap";
 import { deleteProperty, getOffers } from '../ApiConfig/api';
@@ -25,7 +25,8 @@ function PropertyContainer(props) {
     })
   }, [props.user.token])
 
-    // Handle the delete property
+    // TODO Move down similar to handleAddProperty
+    // Handle the delete property 
     const handleDeleteProperty = (e) => {
       // Display a confirmation message
       const confirmed = window.confirm('Are you sure you want to delete this property?');
@@ -42,6 +43,10 @@ function PropertyContainer(props) {
           console.log(error)
         })
       }
+    }
+
+    const handleAddProperty = (newProperty) => {
+      setProperties([...properties, newProperty])
     }
 
     const togglePropertyModalOpen = () => {
@@ -74,6 +79,7 @@ function PropertyContainer(props) {
               show={showAddPropertyModal}
               onHide={togglePropertyModalClose}
               user={props.user}
+              handleAddProperty={handleAddProperty}
             />
       </>
 

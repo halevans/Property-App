@@ -22,6 +22,7 @@ function PropertyFormModal(props) {
     }
     newProperty(props.user.token, property_info)
     .then((response) => {
+      props.handleAddProperty(response.data)
       console.log(response.data);
     })
     .catch((error) => {
