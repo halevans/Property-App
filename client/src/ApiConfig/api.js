@@ -46,7 +46,7 @@ export const getOffers = (token, house_id) => {
     headers: {
       Authorization: `Bearer ${token}`
     }
-  })
+  });
 }
 
 export const newOffer = (token, offer_info) => {
@@ -54,7 +54,15 @@ export const newOffer = (token, offer_info) => {
     headers: {
       Authorization: `Bearer ${token}`
     }
-  })
+  });
+}
+
+export const deleteOffer = (token, offer_id) => {
+  return axios.delete(`${apiUrl}/offers/${offer_id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 }
 
 export const deleteProperty = (token, house_id) => {

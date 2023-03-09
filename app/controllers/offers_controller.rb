@@ -30,6 +30,11 @@ class OffersController < ApplicationController
     render json: @offers
   end
 
+  def destroy
+    @offer.destroy
+    head :no_content
+  end
+
   private 
   
   def set_offer
