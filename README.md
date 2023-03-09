@@ -1,7 +1,6 @@
 # Property App
 
 ## App Overview
----
 
 The Property App is a platform to list properties for sale, where users can make offers on other listed properties.
 
@@ -42,7 +41,7 @@ This app was built using a [`Ruby on Rails`](https://rubyonrails.org/) backend A
 - Craft a `README.md` file that explains your app.
 
 ## Planning
----
+
 ### MVP
 
 - A property listing website where users can:
@@ -163,7 +162,6 @@ This app was built using a [`Ruby on Rails`](https://rubyonrails.org/) backend A
   ```
 
 ## Challenges
----
 
 - Using `devise-api`
   - It is a new library with limited documentation and community support
@@ -171,7 +169,6 @@ This app was built using a [`Ruby on Rails`](https://rubyonrails.org/) backend A
 - Designing the database such that a `User` could be both a property owner and an offerer
 
 ## Future Improvements
----
 
 - Sell a property to another person
 - Add filters to view only certain properties e.g. by price range
