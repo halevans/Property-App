@@ -3,7 +3,7 @@ import { getProperties } from '../ApiConfig/api'
 import PropertyItem from './PropertyItem'
 
 function PropertyContainer(props) {
-  const [saleProperties, setSaleProperties] = useState([])
+  const [properties, setSaleProperties] = useState([])
 
   useEffect(() => {
     getProperties(props.user.token)
@@ -15,13 +15,26 @@ function PropertyContainer(props) {
     })
   }, [props.user.token])
 
-  const allProperties = saleProperties.filter(item => item.user_id !== props.user.id).map((property, index) => {
-    return <PropertyItem propertyDetails={property} user={props.user} key={index}/>})
+  let propertiesToRender
+  if (props.profile_page) {
+     propertiesToRender = properties.filter(item => item.user_id === props.user.id)
+  } else {
+    propertiesToRender = properties.filter(item => item.user_id !== props.user.id)
+  }
+
+  const allProperties = propertiesToRender.map((property, index) => {
+    return <PropertyItem propertyDetails={property} 
+                         profile_page={props.profile_page} 
+                         user={props.user} 
+                         key={index}/>})
+
+  
 
   return (
     <>
-      <h1>Properties on the Market...</h1>
+      {!props.profile_page ? <h1>Properties on the Market...</h1> : <h1>Your Properties...</h1>}
       {allProperties}
+
       </>
 
   )

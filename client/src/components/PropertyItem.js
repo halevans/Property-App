@@ -46,13 +46,21 @@ function PropertyItem(props) {
       )
   }
 
+  let offerButton = null
+  if (!props.profile_page) {
+    offerButton = <div style={{ position: 'absolute', top: '0', right: '0', padding: '0.5rem' }}>
+                    <Button onClick={toggleOfferModalOpen} variant="primary" size="sm">Add Offer <i className="bi bi-plus-circle-fill ml-2"></i></Button>
+                  </div>
+  }
+
+
+
+
   return (
     <>
       <Container>
         <Card style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', margin: '1rem 0' }}>
-          <div style={{ position: 'absolute', top: '0', right: '0', padding: '0.5rem' }}>
-            <Button onClick={toggleOfferModalOpen} variant="primary" size="sm">Add Offer <i className="bi bi-plus-circle-fill ml-2"></i></Button>
-          </div>
+          {offerButton}
           <Card.Body className="d-flex align-items-center">
             <Card.Img
               variant="left"
