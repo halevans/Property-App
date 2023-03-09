@@ -23,7 +23,6 @@ function LoginForm() {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    console.log("Login User");
 
     loginUser(loginDetails)
       .then((response) => {
@@ -38,7 +37,9 @@ function LoginForm() {
 
         // Redirect page to landing page
         console.log("Navigating to landing page");
-        navigate("/landing-page");
+        navigate("/marketplace");
+        // TODO change below to prop drill to App and back down to NavBar
+        window.location.reload(false); // to refresh the NavBar
       })
       .catch((error) => {
         if (error.response) {
@@ -56,7 +57,7 @@ function LoginForm() {
 
   return (
     <>
-      <h2>Login Form</h2>
+      <h4>Login</h4>
       <Form onSubmit={handleLoginSubmit}>
         <Form.Group className="mb-3" controlId="LoginFormEmail">
           <Form.Label>Email address</Form.Label>
@@ -78,7 +79,7 @@ function LoginForm() {
             placeholder="Password"
             onChange={handleInputChange} />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button className="my-3" variant="primary" type="submit">
           Submit
         </Button>
       </Form>

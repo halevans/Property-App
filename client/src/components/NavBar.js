@@ -32,7 +32,8 @@ function NavBar() {
     logoutUser(user_token)
       .then((response) => {
         localStorage.removeItem("user");
-        navigate("/login");
+        setUser(null);
+        navigate("/");
       })
       .catch((error) => {
         if (error.response) {
@@ -55,9 +56,9 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/login">Log In</Nav.Link>
-            <Nav.Link href="/landing-page">Landing Page</Nav.Link>
+            {/* <Nav.Link href="/">Home</Nav.Link> */}
+            {/* <Nav.Link href="/login">Log In</Nav.Link> */}
+            <Nav.Link href="/marketplace">Marketplace</Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link href="/about">About</Nav.Link>
@@ -65,14 +66,14 @@ function NavBar() {
           {user && 
             <>
               <Navbar.Text>
-                Signed in as: <a href="/profile">{user.first_name}</a>
+                Signed in as: <a href="/profile">{user.first_name} {user.last_name}</a>
               </Navbar.Text>
               <Button className="ms-3" variant="outline-danger" onClick={handleLogOut}>Logout</Button>
             </>
           }
-          {!user && 
-            <Button variant="outline-danger" onClick={() => navigate("/login")}>Log In</Button>
-          }
+          {/* {!user && 
+            <Button variant="outline-danger" onClick={() => navigate("/")}>Log In</Button>
+          } */}
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -19,7 +19,6 @@ function OfferFormModal(props) {
     }
     newOffer(props.user.token, offer_info)
     .then((response) => {
-      console.log(response.data);
       // Call the callback function passed from PropertyItem to update the state with the newly added offer
       props.handleOfferAdded(response.data);
     })

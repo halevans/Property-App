@@ -18,10 +18,10 @@ function LandingPage() {
       })
       .catch((error) => {
         localStorage.removeItem("user");
-        navigate("/login");
+        navigate("/");
       })}
     else {
-      navigate("/login");
+      navigate("/");
     }
     }, [navigate]);
 

@@ -44,7 +44,7 @@ function RegisterForm() {
 
         // Redirect page to landing page
         console.log("Navigating to landing-page");
-        navigate("/landing-page");
+        navigate("/marketplace");
       })
       .catch((error) => {
         if (error.response) {
@@ -62,7 +62,6 @@ function RegisterForm() {
 
   return (
     <>
-      <h2>Register Form</h2>
       <Form onSubmit={handleRegisterSubmit}>
         <Row>
           <Col>
