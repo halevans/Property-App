@@ -23,7 +23,7 @@ function EditPropertyFormModal(props) {
     }
     editProperty(props.user.token, property_info)
     .then((response) => {
-      // props.handleEditProperty(response.data)
+      props.handleEditProperty(response.data)
       console.log(response.data);
     })
     .catch((error) => {
@@ -51,7 +51,7 @@ function EditPropertyFormModal(props) {
             <Form.Label>Asking Price:</Form.Label>
             <Form.Control
               type="number"
-              step={10000}
+              step={100}
               name="asking_price"
               placeholder="Enter asking price..."
               onChange={handleInputChange} 

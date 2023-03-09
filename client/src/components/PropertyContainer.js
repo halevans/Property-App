@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getProperties, newProperty } from '../ApiConfig/api'
+import { editProperty, getProperties, newProperty } from '../ApiConfig/api'
 import PropertyItem from './PropertyItem'
 import { Button} from "react-bootstrap";
 import { deleteProperty, getOffers } from '../ApiConfig/api';
@@ -49,6 +49,12 @@ function PropertyContainer(props) {
       setProperties([...properties, newProperty])
     }
 
+    const handleEditProperty = (editedProperty) => {
+      const index = properties.findIndex(prop => prop.id == editedProperty.id)
+      properties[index] = editedProperty
+      setProperties([...properties])
+    }
+
     const togglePropertyModalOpen = () => {
       setPropertyModal(true)
     }
@@ -62,7 +68,9 @@ function PropertyContainer(props) {
                          profile_page={props.profile_page} 
                          user={props.user}
                          handleDeleteProperty={handleDeleteProperty}
-                         key={index}/>})
+                         key={index}
+                         handleEditProperty={handleEditProperty}/>
+                        })
 
   
 

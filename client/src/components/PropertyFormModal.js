@@ -13,7 +13,7 @@ function PropertyFormModal(props) {
 
   const handleAddPropertySubmit = (e) => {
     e.preventDefault();
-    
+    console.log('*****')
     const property_info = {
       user_id: props.user.id,
       asking_price: propertyDetails.asking_price,
@@ -50,7 +50,7 @@ function PropertyFormModal(props) {
             <Form.Label>Asking Price:</Form.Label>
             <Form.Control
               type="number"
-              step={10000}
+              step={100}
               name="asking_price"
               placeholder="Enter asking price..."
               onChange={handleInputChange} />

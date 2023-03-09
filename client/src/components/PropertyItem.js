@@ -127,6 +127,7 @@ function PropertyItem(props) {
                           onHide={toggleEditPropertyModalClose}
                           user={props.user}
                           propertyDetails={props.propertyDetails}
+                          handleEditProperty={props.handleEditProperty}
                         />
 
 
