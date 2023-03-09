@@ -36,10 +36,12 @@ function PropertyItem(props) {
     setPropertyOffers([...propertyOffers, newOffer]);
   }
 
+  // Map the offers to offer components and sort them in price descending 
   const allOffers = propertyOffers.sort((a,b) => b.offer_price - a.offer_price).map((offer, index) => {
     return (<Offer offer={offer} key={index}/>)
   })
 
+  // If there are offers, display as an accordion, if not present no offers currently....
   let accordion;
   if (propertyOffers.length !== 0) {
     accordion = (allOffers);
@@ -51,12 +53,24 @@ function PropertyItem(props) {
       )
   }
 
+  // Depending on the page this will give you an AddOffer or a Delete button
+  let actionButton
+  if (!props.profile_page) {
+    actionButton = <Button onClick={toggleOfferModalOpen} variant="primary" size="sm">Add Offer <i className="bi bi-plus-circle-fill ml-2"></i></Button>            
+  } else {     
+  actionButton = <Button variant="danger" onClick={null}>Delete<i className="bi bi-trash-fill ml-2"></i></Button>
+
+  }
+
+
+
+
   return (
     <>
       <Container>
         <Card style={{ boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', margin: '1rem 0' }}>
           <div style={{ position: 'absolute', top: '0', right: '0', padding: '0.5rem' }}>
-            <Button onClick={toggleOfferModalOpen} variant="primary" size="sm">Add Offer <i className="bi bi-plus-circle-fill ml-2"></i></Button>
+            {actionButton}
           </div>
           <Card.Body className="d-flex align-items-center">
             <Card.Img
