@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getProperties } from '../ApiConfig/api'
 import PropertyItem from './PropertyItem'
+import { Button} from "react-bootstrap";
 
 function PropertyContainer(props) {
   const [properties, setSaleProperties] = useState([])
@@ -34,7 +35,9 @@ function PropertyContainer(props) {
     <>
       {!props.profile_page ? <h1>Properties on the Market...</h1> : <h1>Your Properties...</h1>}
       {allProperties}
-
+      {props.profile_page && <div style={{ padding: '0.5rem' }}>
+                                <Button onClick={null} variant="primary" size="m">Add Property<i className="bi bi-plus-circle-fill ml-2"></i></Button>
+                              </div>}
       </>
 
   )
