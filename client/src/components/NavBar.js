@@ -25,11 +25,6 @@ function NavBar() {
     }
   }, []);
 
-  // const handleLogIn = (user) => {
-  //   setUser(user);
-  //   localStorage.setItem("user", JSON.stringify(user));
-  // }
-
   const handleLogOut = () => {
     const user_token = JSON.parse(localStorage.getItem("user")).token
     console.log("Goodbye!")
@@ -38,7 +33,7 @@ function NavBar() {
       .then((response) => {
         localStorage.removeItem("user");
         setUser(null);
-        navigate("/login");
+        navigate("/");
       })
       .catch((error) => {
         if (error.response) {
@@ -61,9 +56,9 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/login">Log In</Nav.Link>
-            <Nav.Link href="/landing-page">Landing Page</Nav.Link>
+            {/* <Nav.Link href="/">Home</Nav.Link> */}
+            {/* <Nav.Link href="/login">Log In</Nav.Link> */}
+            <Nav.Link href="/marketplace">Marketplace</Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link href="/about">About</Nav.Link>
@@ -77,7 +72,7 @@ function NavBar() {
             </>
           }
           {/* {!user && 
-            <Button variant="outline-danger" onClick={() => navigate("/login")}>Log In</Button>
+            <Button variant="outline-danger" onClick={() => navigate("/")}>Log In</Button>
           } */}
         </Navbar.Collapse>
       </Container>

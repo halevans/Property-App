@@ -3,10 +3,20 @@ import { Button } from 'react-bootstrap'
 import Container from 'react-bootstrap/esm/Container'
 import LoginForm from '../components/LoginForm'
 import RegisterFormModal from '../components/RegisterFormModal'
+import { useNavigate } from 'react-router-dom';
+
 
 function LoginPage() {
 
+  const navigate = useNavigate();
+
   const [showRegisterModal, setRegisterModal] = useState(false)
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      navigate("/marketplace");
+    }}, [navigate]);
 
   const toggleRegisterModalOpen = () => {
     setRegisterModal(true)

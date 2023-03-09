@@ -11,9 +11,9 @@ function App() {
     <>
       <NavBar />
       <Routes>
-        <Route exact path="/" element={null} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/landing-page" element={<LandingPage />} />
+        <Route exact path="/" element={<LoginPage />} />
+        {/* <Route path="/login" element={<LoginPage />} /> */}
+        <Route path="/marketplace" element={<LandingPage />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </>
