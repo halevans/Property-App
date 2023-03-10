@@ -3,7 +3,7 @@ import { Accordion, Button } from 'react-bootstrap';
 
 function Offer(props) {
 
-  // Converts creatation date to Uk format
+  // Converts creation date to Uk format
   const offerDate = new Date(props.offer.created_at).toLocaleDateString('en-GB');
   
   return (

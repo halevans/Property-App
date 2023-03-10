@@ -12,11 +12,13 @@ function LandingPage() {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
+      // Check that user token is valid 
       checkTokenValidity(storedUser.token)
       .then((response) => {
         setAuthenticated(storedUser);
       })
       .catch((error) => {
+        // If any error occur, remove user info from localStorage (as a safety net) and redirect to login page
         localStorage.removeItem("user");
         navigate("/");
       })}
@@ -24,8 +26,6 @@ function LandingPage() {
       navigate("/");
     }
     }, [navigate]);
-
-
 
   
   if (!authenticatedUser) {
