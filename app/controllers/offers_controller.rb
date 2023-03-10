@@ -1,4 +1,5 @@
 class OffersController < ApplicationController
+  # Requires a Bearer token to access
   skip_before_action :verify_authenticity_token, raise: false
   before_action :set_offer, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_devise_api_token!
@@ -23,6 +24,7 @@ class OffersController < ApplicationController
     end
   end
 
+  # Retrieve offers for a specific house_id
   def house_offers 
     @offers = Offer.where(house_id: params[:house_id])
 

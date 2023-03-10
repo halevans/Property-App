@@ -7,12 +7,13 @@ import { useNavigate } from 'react-router-dom';
 function LoginForm() {
 
   const navigate = useNavigate();
-
+  
   const [loginDetails, setLoginDetails ] = useState({
     email: null,
     password: null
   });
 
+  // Handles the user input field and updates the page hook
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setLoginDetails(prevState => ({
@@ -21,6 +22,9 @@ function LoginForm() {
     }));
   }
 
+  // Handles user login submit, 
+  // Making the axios call to check details 
+  // If successful saves token to local storage
   const handleLoginSubmit = (e) => {
     e.preventDefault();
 
