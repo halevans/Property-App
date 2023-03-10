@@ -3,7 +3,9 @@ import { Accordion, Button } from 'react-bootstrap';
 
 function Offer(props) {
 
+  // Converts creatation date to Uk format
   const offerDate = new Date(props.offer.created_at).toLocaleDateString('en-GB');
+  
   return (
     <Accordion.Body className='p-2'>
       {props.offer.user_id === props.user.id ? <div style={{ display: 'flex', justifyContent: 'space-between', backgroundColor: '#F4F9F9', padding: '5px', alignItems: 'center', borderRadius: '5px'}}>
