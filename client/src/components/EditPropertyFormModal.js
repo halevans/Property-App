@@ -6,11 +6,13 @@ function EditPropertyFormModal(props) {
 
   const [propertyDetails, setPropertyDetails] = useState(props.propertyDetails);
 
+  // Handle user input changes to edit proeprty details
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setPropertyDetails({ ...propertyDetails, [name]: value });
   }
 
+  // Handles edit submit, updating the db and the page hook
   const handleAddPropertySubmit = (e) => {
     e.preventDefault();
     
@@ -21,6 +23,7 @@ function EditPropertyFormModal(props) {
       no_rooms: propertyDetails.no_rooms,
       img_url: propertyDetails.img_url
     }
+    // Patch axios call to edit house details
     editProperty(props.user.token, property_info)
     .then((response) => {
       props.handleEditProperty(response.data)

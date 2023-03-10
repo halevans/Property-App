@@ -6,10 +6,12 @@ function OfferFormModal(props) {
 
   const [offerPrice, setOfferPrice] = useState(null);
 
+  // Tracks user input of the offer price
   const handleInputChange = (e) => {
     setOfferPrice(e.target.value);
   }
 
+  // Handles offer submit, making an api call and updating the page
   const handleOfferSubmit = (e) => {
     e.preventDefault();
     const offer_info = {
@@ -17,6 +19,7 @@ function OfferFormModal(props) {
       house_id: props.propertyDetails.id,
       offer_price: offerPrice
     }
+    // Api call to add offer to db
     newOffer(props.user.token, offer_info)
     .then((response) => {
       // Call the callback function passed from PropertyItem to update the state with the newly added offer

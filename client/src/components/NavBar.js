@@ -8,6 +8,7 @@ function NavBar() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null); //initialize user state as null
 
+  // Retrieves user from local storage on page load
   useEffect(() => {
     if (!JSON.parse(localStorage.getItem("user"))) {
       console.log("No user in localStorage")
@@ -25,10 +26,12 @@ function NavBar() {
     }
   }, []);
 
+  // Logs out a user and clears local storage
   const handleLogOut = () => {
     const user_token = JSON.parse(localStorage.getItem("user")).token
     console.log("Goodbye!")
 
+    // Api call to revoke user token
     logoutUser(user_token)
       .then((response) => {
         localStorage.removeItem("user");
