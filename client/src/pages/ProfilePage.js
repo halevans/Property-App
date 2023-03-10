@@ -10,6 +10,7 @@ import UserDetails from '../components/UserDetails';
 function ProfilePage() {
 
   const navigate = useNavigate();
+  
   const [authenticatedUser, setAuthenticated] = useState(null);
   const [profileDetails, setProfileDetails] = useState({
     first_name: '...loading',
@@ -21,6 +22,7 @@ function ProfilePage() {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
+      // Check that user token is valid 
       checkTokenValidity(storedUser.token)
       .then((response) => {
         setAuthenticated(storedUser);
@@ -28,7 +30,7 @@ function ProfilePage() {
         // Get user info
         getUserInfo(storedUser.id ,storedUser.token)
         .then((response) => {
-          //store user info in component state
+          // Store user info in component state
           setProfileDetails({
             first_name: response.data.first_name,
             last_name: response.data.last_name,
@@ -37,11 +39,12 @@ function ProfilePage() {
           }) 
         })
         .catch((error) => {
-          //handle error
+          // handle error
           console.log(error);
         });
       })
       .catch((error) => {
+        // If any error occur, remove user info from localStorage (as a safety net) and redirect to login page
         localStorage.removeItem("user");
         navigate("/");
       })}

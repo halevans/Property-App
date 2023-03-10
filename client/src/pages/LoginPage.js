@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap'
-import Container from 'react-bootstrap/esm/Container'
-import LoginForm from '../components/LoginForm'
-import RegisterFormModal from '../components/RegisterFormModal'
+import { Button } from 'react-bootstrap';
+import Container from 'react-bootstrap/esm/Container';
+import LoginForm from '../components/LoginForm';
+import RegisterFormModal from '../components/RegisterFormModal';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -10,8 +10,9 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
-  const [showRegisterModal, setRegisterModal] = useState(false)
+  const [showRegisterModal, setRegisterModal] = useState(false);
 
+  // If the user is already logged in and exists in localStorage, redirect them to the marketplace page
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
@@ -19,11 +20,11 @@ function LoginPage() {
     }}, [navigate]);
 
   const toggleRegisterModalOpen = () => {
-    setRegisterModal(true)
+    setRegisterModal(true);
   }
 
   const toggleRegisterModalClose = () => {
-    setRegisterModal(false)
+    setRegisterModal(false);
   }
 
   return (
@@ -46,4 +47,4 @@ function LoginPage() {
   )
 }
 
-export default LoginPage
+export default LoginPage;
